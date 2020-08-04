@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PrivateRoute from "components/shared/PrivateRoute";
+import PublicRoute from "components/shared/PublicRoute";
+import PrivateLayout from "containers/PrivateLayout";
+import PublicLayout from "containers/PublicLayout";
+import React from "react";
+import { Router, Switch } from "react-router-dom";
+import "scss/style.scss";
+import { browserHistory } from "utils/history";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={browserHistory}>
+      <Switch>
+        <PrivateRoute
+          path="/admin"
+          name="Private Route"
+          component={PrivateLayout}
+        />
+        <PublicRoute path="/" name="Public Route" component={PublicLayout} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

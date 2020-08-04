@@ -1,0 +1,82 @@
+.header {
+  background-color: #fff;
+  position: relative;
+  z-index: 10;
+  height: 64px;
+}
+
+.header-logo {
+  overflow: hidden;
+  padding-left: 40px;
+  float: left;
+  line-height: 64px;
+  text-decoration: none;
+  height: 64px;
+  img {
+    display: inline;
+    vertical-align: middle;
+    margin-right: 16px;
+  }
+  span {
+    color: #1890ff;
+    outline: none;
+    font-size: 14px;
+    line-height: 28px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 200px;
+  }
+}
+
+.header-meta {
+  padding-right: 40px;
+}
+
+.menu {
+  float: right;
+  overflow: hidden;
+  height: 64px;
+  .ant-menu {
+    line-height: 60px;
+  }
+  .ant-menu-horizontal {
+    border-bottom: none;
+    & > .ant-menu-item {
+      border-top: 2px solid transparent;
+      &:hover {
+        border-top: 2px solid #1890ff;
+        border-bottom: 2px solid transparent;
+      }
+    }
+    & > .ant-menu-item-selected {
+      border-top: 2px solid #1890ff;
+      border-bottom: 2px solid transparent;
+      a {
+        color: #1890ff;
+      }
+    }
+  }
+}
+
+.popover-menu {
+  float: right;
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  z-index: 1;
+  width: 16px;
+  height: 22px;
+
+  // .ant-popover-inner {
+  //   overflow: hidden;
+  //   &-content {
+  //     padding: 0;
+  //   }
+  // }
+}
