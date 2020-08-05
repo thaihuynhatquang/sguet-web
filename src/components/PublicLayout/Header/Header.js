@@ -4,9 +4,11 @@ import { LOGO_SGUET } from "constants/common";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
+import { browserHistory } from "utils/history";
 
 const Header = (props) => {
   const { isMobile } = props;
+  const [selectedPage, setSelectedPage] = useState("home");
   const [menuMode, setMenuMode] = useState("horizontal");
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -14,20 +16,21 @@ const Header = (props) => {
     !isMobile ? setMenuMode("horizontal") : setMenuMode("inline");
   }, [isMobile]);
 
+  const handleSelectPage = (e) => {
+    setSelectedPage(e.key);
+    browserHistory.push(`/${e.key}`);
+  };
+
   const menu = (
-    <Menu mode={menuMode} id="nav" key="nav">
-      <Menu.Item key="home">
-        <Link to="/">Home</Link>
-      </Menu.Item>
-      <Menu.Item key="blog">
-        <Link to="/blog">Blog</Link>
-      </Menu.Item>
-      <Menu.Item key="contact">
-        <Link to="/contact">Contact</Link>
-      </Menu.Item>
-      <Menu.Item key="faq">
-        <Link to="/faq">FAQ</Link>
-      </Menu.Item>
+    <Menu
+      mode={menuMode}
+      selectedKeys={selectedPage}
+      onClick={handleSelectPage}
+    >
+      <Menu.Item key="home">Home</Menu.Item>
+      <Menu.Item key="blog">Blog</Menu.Item>
+      <Menu.Item key="contact">Contact</Menu.Item>
+      <Menu.Item key="faq">FAQ</Menu.Item>
     </Menu>
   );
 
@@ -48,19 +51,20 @@ const Header = (props) => {
             visible={menuVisible}
             onVisibleChange={handleShowMenu}
           >
-            <MenuOutlined onClick={handleShowMenu} />
+            <MenuOutlined
+              style={{ color: "#fff", fontSize: "14px" }}
+              onClick={handleShowMenu}
+            />
           </Popover>
         ) : null}
         <Row>
           <Col xxl={4} xl={5} lg={8} md={8} sm={24} xs={24}>
-            <Link to="/">
-              <div className="header-logo" to="/">
-                <img src={LOGO_SGUET} alt="logo" style={{ width: "32px" }} />
-                <>
-                  <b>SUPPORT GROUP UET</b>
-                </>
-              </div>
-            </Link>
+            <div className="header-logo">
+              <img src={LOGO_SGUET} alt="logo" style={{ width: "32px" }} />
+              <>
+                <b>SUPPORT GROUP UET</b>
+              </>
+            </div>
           </Col>
           <Col xxl={20} xl={19} lg={16} md={16} sm={0} xs={0}>
             <div className="header-meta">

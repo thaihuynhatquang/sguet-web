@@ -1,11 +1,11 @@
 import { Spin } from "antd";
+import Footer from "components/PublicLayout/Footer";
+import Header from "components/PublicLayout/Header";
 import { enquireScreen } from "enquire-js";
 import navigator from "navigator";
 import query from "qs";
 import React, { Suspense, useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 var checkMobile;
 
@@ -21,7 +21,7 @@ const PublicLayout = () => {
   }, []);
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <Header isMobile={isMobile} />
       <main>
         <Suspense fallback={<Spin />}>
@@ -37,6 +37,7 @@ const PublicLayout = () => {
                     render={(props) => (
                       <div className="animated fadeIn">
                         <Component
+                          isMobile={isMobile}
                           params={props.match.params}
                           query={query.parse(props.location.search.slice(1))}
                         />
@@ -46,10 +47,11 @@ const PublicLayout = () => {
                 );
               })}
           </Switch>
+          <Redirect from="/" to="/home" />
         </Suspense>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
