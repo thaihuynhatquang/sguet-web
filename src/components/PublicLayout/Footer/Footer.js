@@ -10,8 +10,6 @@ const Footer = () => {
           <span
             style={{
               lineHeight: "16px",
-              paddingRight: 12,
-              marginRight: 11,
             }}
           >
             <a

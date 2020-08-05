@@ -1,8 +1,10 @@
 .header {
-  background-color: #fff;
-  position: relative;
-  z-index: 10;
-  height: 64px;
+  background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.5s ease 0s;
 }
 
 .header-logo {
@@ -17,8 +19,8 @@
     vertical-align: middle;
     margin-right: 16px;
   }
-  span {
-    color: #1890ff;
+  b {
+    color: #fff;
     outline: none;
     font-size: 14px;
     line-height: 28px;
@@ -44,22 +46,32 @@
   height: 64px;
   .ant-menu {
     line-height: 60px;
+    background-color: transparent;
+    color: #fff;
   }
   .ant-menu-horizontal {
     border-bottom: none;
     & > .ant-menu-item {
       border-top: 2px solid transparent;
       &:hover {
-        border-top: 2px solid #1890ff;
+        color: #fff;
+        border-top: 2px solid #fff;
         border-bottom: 2px solid transparent;
       }
     }
     & > .ant-menu-item-selected {
-      border-top: 2px solid #1890ff;
+      border-top: 2px solid #fff;
       border-bottom: 2px solid transparent;
-      a {
-        color: #1890ff;
-      }
+      color: #fff;
+      font-weight: 900;
+    }
+  }
+  .ant-menu-inline li {
+    .ant-menu-item-selected {
+      border-top: 2px solid #fff;
+      border-bottom: 2px solid transparent;
+      color: #fff !important;
+      font-weight: 900;
     }
   }
 }
@@ -72,11 +84,4 @@
   z-index: 1;
   width: 16px;
   height: 22px;
-
-  // .ant-popover-inner {
-  //   overflow: hidden;
-  //   &-content {
-  //     padding: 0;
-  //   }
-  // }
 }
